@@ -42,8 +42,8 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 const byte n_rows = 4;
 const byte n_cols = 4;
 char keys[n_rows][n_cols] = { { '1', '2', '3', '4' }, { '4', '5', '6', '-' }, { '7', '8', '9', '*' }, { 'c', '0', '=', '/' } };
-byte colPins[n_rows] = { D6, D5, D4, D3 };
-byte rowPins[n_cols] = { 10, 9, 3, D7 };
+byte colPins[n_rows] = { D6, D5, D4, D3 }; //12 14 2 0
+byte rowPins[n_cols] = { 10, 9, 3, D7 }; //10 9 3 13
 Keypad myKeypad = Keypad(makeKeymap(keys), rowPins, colPins, n_rows, n_cols);
 
 int BUZZ_PIN = D8;
@@ -144,6 +144,7 @@ char key;
 void minhalogica() {
   key = myKeypad.getKey();
   if (key != '\0') {
+    buzzBip(500);
     if (key == '1') {
       Blynk.logEvent("alerta", "Possivel pessoa desconhecida");
     } else if (key == '2') {
